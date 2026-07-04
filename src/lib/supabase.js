@@ -1,17 +1,10 @@
 // src/lib/supabase.js
-// ============================================================
-// Cliente Supabase — ponto central de conexão com o banco
-// ============================================================
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl  = process.env.REACT_APP_SUPABASE_URL;
-const supabaseKey  = process.env.REACT_APP_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL 
+  || 'https://gshkjepwsrespxedufyf.supabase.co';
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error(
-    '❌ Variáveis de ambiente não configuradas.\n' +
-    'Copie .env.example para .env.local e preencha com os dados do Supabase.'
-  );
-}
+const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY 
+  || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaGtqZXB3c3Jlc3B4ZWR1ZnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MjMyMjIsImV4cCI6MjA5NjI5OTIyMn0.Ib8di_svoz65a-7e-qBRj61ZxoUFnoMyGONq5pY-Azs';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
