@@ -1,4 +1,4 @@
-# Nexus Log CRM — Guia de Deploy
+# Nexus Log CRM — Guia de Deploy 
 ## Supabase + GitHub + Vercel
 
 ---
