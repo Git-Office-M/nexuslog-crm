@@ -165,6 +165,7 @@ export default function Layout({ page, setPage, children, counts = {} }) {
               </div>
             </div>
             <button className="sign-out" onClick={signOut}>↩ Sair</button>
+            <button className="sign-out" style={{marginTop:4}} onClick={()=>go('privacidade')}>🔒 Política de Privacidade</button>
           </div>
         </aside>
 
