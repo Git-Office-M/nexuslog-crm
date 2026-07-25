@@ -12,18 +12,11 @@ import PageVisits      from './pages/PageVisits';
 import PageDetail      from './pages/PageDetail';
 import PageCatalog     from './pages/PageCatalog';
 import PageSettings    from './pages/PageSettings';
+import PagePrivacidade from './pages/PagePrivacidade';
 import { exportProposalPdf } from './lib/exportPdf';
 
 const GLOBAL_STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', sans-serif; }
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
-  @keyframes toastIn  { from { opacity:0; transform:translateY(8px); } }
-  @keyframes slideUp  { from { opacity:0; transform:translateY(16px); } }
-  @keyframes fadeIn   { from { opacity:0; } }
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button { opacity: 1; }
   select { appearance: auto; }
@@ -31,15 +24,15 @@ const GLOBAL_STYLES = `
 
 function AppInner() {
   const { user, loading: authLoading } = useAuth();
-  const [page, setPage]     = useState('dashboard');
+  const [page, setPage]         = useState('dashboard');
   const [selected, setSelected] = useState(null);
-  const [toast, setToast]   = useState(null);
+  const [toast, setToast]       = useState(null);
 
   const { proposals, loading: propLoading, create: createProposal, updateStatus: updateProposalStatus } = useProposals();
   const { visits,   loading: visitLoading, create: createVisit,   updateStatus: updateVisitStatus    } = useVisits();
 
-  const showToast = (msg) => setToast(msg);
-  const navigateTo = (p) => { setPage(p); if (p !== 'detail') setSelected(null); };
+  const showToast  = (msg) => setToast(msg);
+  const navigateTo = (p)   => { setPage(p); if (p !== 'detail') setSelected(null); };
 
   const counts = {
     negotiating:    proposals.filter(p => p.status === 'Negociando').length,
@@ -113,8 +106,9 @@ function AppInner() {
           }}
         />
       )}
-      {page === 'catalog'   && <PageCatalog />}
-      {page === 'settings'  && <PageSettings onSaved={() => showToast('Perfil atualizado!')} />}
+      {page === 'catalog'      && <PageCatalog />}
+      {page === 'settings'     && <PageSettings onSaved={() => showToast('Perfil atualizado!')} />}
+      {page === 'privacidade'  && <PagePrivacidade />}
       {page === 'detail' && selected && (
         <PageDetail
           proposal={selected}
