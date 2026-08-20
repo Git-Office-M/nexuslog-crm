@@ -12,7 +12,6 @@ import PageVisits      from './pages/PageVisits';
 import PageDetail      from './pages/PageDetail';
 import PageCatalog     from './pages/PageCatalog';
 import PageSettings    from './pages/PageSettings';
-import PagePrivacidade from './pages/PagePrivacidade';
 import { exportProposalPdf } from './lib/exportPdf';
 
 const GLOBAL_STYLES = `
@@ -106,9 +105,8 @@ function AppInner() {
           }}
         />
       )}
-      {page === 'catalog'      && <PageCatalog />}
-      {page === 'settings'     && <PageSettings onSaved={() => showToast('Perfil atualizado!')} />}
-      {page === 'privacidade'  && <PagePrivacidade />}
+      {page === 'catalog'  && <PageCatalog />}
+      {page === 'settings' && <PageSettings onSaved={() => showToast('Perfil atualizado!')} />}
       {page === 'detail' && selected && (
         <PageDetail
           proposal={selected}
